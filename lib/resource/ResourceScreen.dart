@@ -1,4 +1,5 @@
-import 'package:clicker_game/main.dart';
+import 'package:clicker_game/layout/CustomAppBar.dart';
+import 'package:clicker_game/state/AppState.dart';
 import 'package:clicker_game/tool/Tool.dart';
 import 'package:flutter/material.dart';
 import 'Resource.dart';
@@ -57,17 +58,7 @@ class ResourcesScreenState extends State<ResourcesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Resources'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.construction),
-            onPressed: () {
-              Navigator.pushNamed(context, '/tools');
-            },
-          ),
-        ],
-      ),
+      appBar: const CustomAppBar(pageTitle: 'Resources'),
       body: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 4,

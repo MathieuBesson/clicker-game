@@ -30,9 +30,12 @@ class Tool {
   final List<Recipe> recipes;
   final ToolType type;
   final String description;
+  final String gamePlayDescription;
+  bool blocked;
   int quantity = 0;
 
-  Tool(this.key, this.name, this.recipes, this.type, this.description);
+  Tool(this.key, this.name, this.recipes, this.type, this.description,
+      this.blocked, this.gamePlayDescription);
 }
 
 enum ToolKey {
@@ -55,6 +58,8 @@ final Map<ToolKey, Map<String, dynamic>> toolData = {
       {'key': ResourceKey.iron, 'quantity': 2}
     ],
     'typeKey': ToolTypeKey.tool,
+    'gamePlayDescription': 'Récolter le bois 3 par 3',
+    'blocked': false,
     'description': 'Un outil utile',
   },
   ToolKey.pickaxe: {
@@ -64,6 +69,8 @@ final Map<ToolKey, Map<String, dynamic>> toolData = {
       {'key': ResourceKey.iron, 'quantity': 3}
     ],
     'typeKey': ToolTypeKey.tool,
+    'gamePlayDescription': 'Récolter les minerais 5 par 5',
+    'blocked': false,
     'description': 'Un outil utile',
   },
   ToolKey.ironIngot: {
@@ -72,6 +79,8 @@ final Map<ToolKey, Map<String, dynamic>> toolData = {
       {'key': ResourceKey.iron, 'quantity': 1},
     ],
     'typeKey': ToolTypeKey.material,
+    'gamePlayDescription': 'Débloque d’autres recettes',
+    'blocked': false,
     'description': 'Un lingot de fer pur',
   },
   ToolKey.ironPlate: {
@@ -80,6 +89,8 @@ final Map<ToolKey, Map<String, dynamic>> toolData = {
       {'key': ResourceKey.iron, 'quantity': 3},
     ],
     'typeKey': ToolTypeKey.material,
+    'gamePlayDescription': 'Débloque d’autres recettes',
+    'blocked': false,
     'description': 'Une plaque de fer pour la construction',
   },
   ToolKey.copperIngot: {
@@ -88,6 +99,8 @@ final Map<ToolKey, Map<String, dynamic>> toolData = {
       {'key': ResourceKey.copper, 'quantity': 1},
     ],
     'typeKey': ToolTypeKey.material,
+    'gamePlayDescription': 'Débloque d’autres recettes',
+    'blocked': true,
     'description': 'Une plaque de fer pour la construction',
   },
   ToolKey.metalRod: {
@@ -96,6 +109,8 @@ final Map<ToolKey, Map<String, dynamic>> toolData = {
       {'key': ToolKey.ironIngot, 'quantity': 1},
     ],
     'typeKey': ToolTypeKey.material,
+    'gamePlayDescription': 'Débloque d’autres recettes',
+    'blocked': false,
     'description': 'Une tige de métal',
   },
   ToolKey.threadElectric: {
@@ -104,33 +119,15 @@ final Map<ToolKey, Map<String, dynamic>> toolData = {
       {'key': ToolKey.copperIngot, 'quantity': 1},
     ],
     'typeKey': ToolTypeKey.component,
+    'gamePlayDescription': 'Débloque d’autres recettes',
+    'blocked': true,
     'description':
         'Un fil électrique pour fabriquer des composants électroniques',
-  },
-  ToolKey.miner: {
-    'name': 'Mineur',
-    'recipe': [
-      {'key': ToolKey.ironPlate, 'quantity': 10},
-      {'key': ToolKey.threadElectric, 'quantity': 5},
-    ],
-    'typeKey': ToolTypeKey.building,
-    'description': 'Un bâtiment qui permet d’automatiser le minage',
-  },
-  ToolKey.foundry: {
-    'name': 'Fonderie',
-    'recipe': [
-      {'key': ToolKey.threadElectric, 'quantity': 5},
-      {'key': ToolKey.metalRod, 'quantity': 8},
-    ],
-    'typeKey': ToolTypeKey.building,
-    'description': 'Un bâtiment qui permet d’automatiser la production.',
   },
 };
 
 enum ToolGamePlay {
-  tripleMineWood,
-  tripleMineOres,
+  threefoldMineWood,
+  fiveFoldMineOres,
   unblockTools,
-  ironToCopper,
-  oreInIngot
 }

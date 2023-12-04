@@ -1,5 +1,6 @@
-import 'package:clicker_game/main.dart';
+import 'package:clicker_game/layout/CustomAppBar.dart';
 import 'package:clicker_game/resource/Resource.dart';
+import 'package:clicker_game/state/AppState.dart';
 import 'package:clicker_game/tool/ToolWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,17 +17,21 @@ class ToolScreenState extends State<ToolScreen> {
   @override
   void initState() {
     super.initState();
-    createToolMap(toolData);
+    if (Provider.of<AppState>(context, listen: false).tools.entries.isEmpty) {
+      createToolMap(toolData);
+    }
   }
 
   void createToolMap(Map<ToolKey, Map<String, dynamic>> toolData) {
     var tools = toolData.entries.map((entry) {
-      final toolKey = entry.key;
+      final toolKey = entry.key as ToolKey;
       final data = entry.value;
 
       final name = data['name'] as String;
       final description = data['description'] as String;
+      final gamePlayDescription = data['gamePlayDescription'] as String;
       final recipeData = data['recipe'] as List<dynamic>;
+      final blocked = data['blocked'] as bool;
 
       final recipes = recipeData.map((recipeItem) {
         final key = recipeItem['key'];
@@ -46,7 +51,7 @@ class ToolScreenState extends State<ToolScreen> {
       final type = getToolTypeFromKey(typeKey);
 
       return MapEntry(
-          toolKey, Tool(toolKey, name, recipes, type, description));
+          toolKey, Tool(toolKey, name, recipes, type, description, blocked, gamePlayDescription));
     }).toList();
 
     var appState = Provider.of<AppState>(context, listen: false);
@@ -60,17 +65,7 @@ class ToolScreenState extends State<ToolScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Outils'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.construction),
-            onPressed: () {
-              Navigator.pushNamed(context, '/tools');
-            },
-          ),
-        ],
-      ),
+      appBar: const CustomAppBar(pageTitle: 'Outils'),
       body: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 4,

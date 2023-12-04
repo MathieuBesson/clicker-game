@@ -1,4 +1,4 @@
-import 'package:clicker_game/main.dart';
+import 'package:clicker_game/state/AppState.dart';
 import 'package:flutter/material.dart';
 import 'Resource.dart';
 import 'package:provider/provider.dart';
@@ -18,16 +18,6 @@ class ResourceWidget extends StatelessWidget {
         color: resource.color,
         child: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            TextButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-              ),
-              onPressed: () {
-                appState.incrementResource(resource);
-              },
-              child: const Text('Miner'),
-            ),
             Text(
               resource.name,
               style: const TextStyle(
@@ -41,6 +31,17 @@ class ResourceWidget extends StatelessWidget {
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
+            ),
+            const SizedBox(height: 8),
+            TextButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+              ),
+              onPressed: () {
+                appState.incrementResource(resource);
+              },
+              child: const Text('Miner'),
             ),
           ]),
         ),
