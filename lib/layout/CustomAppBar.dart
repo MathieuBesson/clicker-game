@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/// AppBar de l'application avec un [pageTitle] personnalisé
+/// Cette AppBar permet de naviguer entre les différents écrans
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String pageTitle;
 

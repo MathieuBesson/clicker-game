@@ -1,5 +1,6 @@
 import '../resource/Resource.dart';
 
+/// Représente une recette à la base de la création d'un [Tool]
 class Recipe {
   final String key;
   final dynamic resourceOrToolKey;
@@ -8,6 +9,7 @@ class Recipe {
   Recipe(this.key, this.resourceOrToolKey, this.quantity);
 }
 
+/// Représente un type de [Tool]
 class ToolType {
   final String key;
   final String name;
@@ -15,8 +17,10 @@ class ToolType {
   ToolType(this.key, this.name);
 }
 
+/// Enums listant les types de [Tool]
 enum ToolTypeKey { tool, material, component, building }
 
+/// Données initiales des types de [Tool]
 final Map<ToolTypeKey, String> toolTypeData = {
   ToolTypeKey.tool: 'Outil',
   ToolTypeKey.material: 'Matériau',
@@ -24,6 +28,7 @@ final Map<ToolTypeKey, String> toolTypeData = {
   ToolTypeKey.building: 'Bâtiment'
 };
 
+/// Représente un outil dans le jeu.
 class Tool {
   final ToolKey key;
   final String name;
@@ -38,6 +43,7 @@ class Tool {
       this.blocked, this.gamePlayDescription);
 }
 
+/// Enums listant les [Tool] (pour identification)
 enum ToolKey {
   axe,
   pickaxe,
@@ -50,6 +56,7 @@ enum ToolKey {
   foundry
 }
 
+/// Map de donnée initiale des [Tool]
 final Map<ToolKey, Map<String, dynamic>> toolData = {
   ToolKey.axe: {
     'name': 'Hache',
@@ -126,6 +133,7 @@ final Map<ToolKey, Map<String, dynamic>> toolData = {
   },
 };
 
+/// Enums de liste des types de gameplay
 enum ToolGamePlay {
   threefoldMineWood,
   fiveFoldMineOres,

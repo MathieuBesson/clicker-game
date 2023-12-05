@@ -6,6 +6,7 @@ import 'Resource.dart';
 import 'package:provider/provider.dart';
 import 'ResourceWidget.dart';
 
+/// Écran de liste des [Resource] permettant de les miner 
 class ResourcesScreen extends StatefulWidget {
   const ResourcesScreen({super.key});
 
@@ -13,6 +14,7 @@ class ResourcesScreen extends StatefulWidget {
   ResourcesScreenState createState() => ResourcesScreenState();
 }
 
+/// Class compagnon d'état lié à [ResourcesScreen]
 class ResourcesScreenState extends State<ResourcesScreen> {
   @override
   void initState() {
@@ -20,6 +22,8 @@ class ResourcesScreenState extends State<ResourcesScreen> {
     createResourceMap(resourceData);
   }
 
+  /// Crée des objets [Resource] à partir des données fournies,
+  /// puis remplit la map de [Resource] dans le state de l'application [AppState].
   void createResourceMap(Map<ResourceKey, Map<String, dynamic>> data) {
     final Map<ResourceKey, Resource> resources = {};
 
@@ -36,10 +40,12 @@ class ResourcesScreenState extends State<ResourcesScreen> {
     appState.fillResources(resources);
   }
 
+  /// Génère un objet [Color] à partir d'une couleur en hexadecimal
   Color parseColor(String colorCode) {
     return Color(int.parse(colorCode.replaceAll('#', '0xFF')));
   }
 
+  /// Décide si il faut ou non afficher la ressource à l'écran 
   bool isAuthorizedToDisplay(Resource? resource) {
     var appState = Provider.of<AppState>(context, listen: false);
 

@@ -5,6 +5,7 @@ import 'package:clicker_game/tool/ToolWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+/// Écran de liste des [Tool] construits  
 class InventoryScreen extends StatefulWidget {
   const InventoryScreen({Key? key}) : super(key: key);
 
@@ -12,6 +13,7 @@ class InventoryScreen extends StatefulWidget {
   InventoryScreenState createState() => InventoryScreenState();
 }
 
+/// Class compagnon d'état lié à [InventoryScreen]
 class InventoryScreenState extends State<InventoryScreen> {
   late Map<ToolKey, Tool> tools = {};
   bool sortByQuantity = false;
@@ -27,6 +29,7 @@ class InventoryScreenState extends State<InventoryScreen> {
     tools = filterToolsNotEmpty();
   }
 
+  /// Filtre les [Tool] du state global pour ne conserver que ceux ayant une quantité supérieur à 0
   Map<ToolKey, Tool> filterToolsNotEmpty() {
     return Map.fromEntries(Provider.of<AppState>(context)
         .tools
@@ -34,6 +37,7 @@ class InventoryScreenState extends State<InventoryScreen> {
         .where((entry) => entry.value.quantity > 0));
   }
 
+  /// Tri les [Tool] par quantité récolté
   void sortByToolQuantity() {
     setState(() {
       sortByQuantity = true;
@@ -42,6 +46,7 @@ class InventoryScreenState extends State<InventoryScreen> {
     });
   }
 
+  /// Tri les [Tool] par nom
   void sortByToolName() {
     setState(() {
       sortByQuantity = false;

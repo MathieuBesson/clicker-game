@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'Tool.dart';
 
+/// Écran de liste des [Tool] permettant de les miner 
 class ToolScreen extends StatefulWidget {
   const ToolScreen({super.key});
 
@@ -13,6 +14,7 @@ class ToolScreen extends StatefulWidget {
   ToolScreenState createState() => ToolScreenState();
 }
 
+/// Class compagnon d'état lié à [ToolScreen]
 class ToolScreenState extends State<ToolScreen> {
   @override
   void initState() {
@@ -22,6 +24,8 @@ class ToolScreenState extends State<ToolScreen> {
     }
   }
 
+  /// Crée des objets [Tool] à partir des données fournies,
+  /// puis remplit la map de [Tool] dans le state de l'application [AppState].
   void createToolMap(Map<ToolKey, Map<String, dynamic>> toolData) {
     var tools = toolData.entries.map((entry) {
       final toolKey = entry.key as ToolKey;
@@ -58,6 +62,7 @@ class ToolScreenState extends State<ToolScreen> {
     appState.fillTools(Map.fromEntries(tools));
   }
 
+  /// Construit un [ToolType] depuis une [ToolTypeKey]
   ToolType getToolTypeFromKey(ToolTypeKey key) {
     return ToolType(key.toString(), toolTypeData[key]!);
   }

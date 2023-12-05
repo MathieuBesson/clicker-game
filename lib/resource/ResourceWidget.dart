@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'Resource.dart';
 import 'package:provider/provider.dart';
 
+/// Widget d'affichage d'une [Resource]
 class ResourceWidget extends StatelessWidget {
   final Resource resource;
 

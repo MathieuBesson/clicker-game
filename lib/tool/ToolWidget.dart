@@ -3,6 +3,7 @@ import 'package:clicker_game/tool/Tool.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+/// Widget d'affichage d'un [Tool]
 class ToolWidget extends StatelessWidget {
   final Tool tool;
   final bool displayActions;
@@ -12,7 +13,7 @@ class ToolWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     AppState provider = Provider.of<AppState>(context, listen: false);
 
-    bool isAvailable = provider.checkBuildAvailability(tool.recipes) && tool.blocked == false;
+    bool isAvailable = provider.checkResourcesAvailability(tool.recipes) && tool.blocked == false;
 
     return Card(
       margin: EdgeInsets.all(10),
@@ -83,6 +84,7 @@ class ToolWidget extends StatelessWidget {
     );
   }
 
+  /// Construit un widget avec un label en bold et un contenu texte classqiue
   Widget buildRichText(String boldText, String text, BuildContext context) {
     return RichText(
       text: TextSpan(

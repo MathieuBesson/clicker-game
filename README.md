@@ -61,5 +61,5 @@ Je n'ai pas non plus eu le temps de faire de la flutter doc et de générer une 
 
 Reste à faire : 
 
-- Commenter le code
+- Génerer la doc flutter
 - Rendre le projet et le questionnaire + dépot code veille
